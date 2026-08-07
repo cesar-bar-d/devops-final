@@ -1,0 +1,31 @@
+# Credentials - NEVER commit
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+
+# Tests
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Reports output (evidences stay local, not in repo)
+reports/*.json
+reports/*.html
+evidencias/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp

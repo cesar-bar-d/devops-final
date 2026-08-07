@@ -1,0 +1,11 @@
+services:
+  automation:
+    build: .
+    image: devops-final:latest
+    # Las credenciales se inyectan desde .env (nunca hardcoded en este archivo)
+    env_file:
+      - .env
+    volumes:
+      # Monta la carpeta de reportes para persistir los archivos generados
+      - ./reports:/app/reports
+    restart: "no"

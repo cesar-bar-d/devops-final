@@ -1,0 +1,15 @@
+# Excluir del contexto de Docker (reduce tamaño del build y evita copiar secretos)
+.env
+.git/
+.gitignore
+evidencias/
+reports/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.coverage
+venv/
+.venv/
+*.md
