@@ -1,0 +1,2 @@
+# Inventario de dispositivos para los playbooks de Ansible
+CSR1kv ansible_user=cisco ansible_password=cisco123! ansible_host=192.168.56.101

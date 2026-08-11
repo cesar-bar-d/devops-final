@@ -1,0 +1,26 @@
+---
+# configure_interface.yml — Configura descripción e IPv6 en GigabitEthernet1
+- name: CONFIGURAR INTERFAZ Y DIRECCIONAMIENTO IPv6
+  hosts: CSR1kv
+  gather_facts: false
+  connection: local
+
+  tasks:
+    - name: APLICAR CONFIGURACION IPv6 EN GigabitEthernet1
+      ios_config:
+        parents: "interface GigabitEthernet1"
+        lines:
+          - description Gestionado por DevOps-Final Ansible Automation
+          - ipv6 address 2001:DB8:ACAD:1::1/64
+          - ipv6 address FE80::1:1 link-local
+
+    - name: VERIFICAR ESTADO IPv6
+      ios_command:
+        commands:
+          - show ipv6 interface brief
+      register: output
+
+    - name: GUARDAR SALIDA EN ./ios_configurations/
+      copy:
+        content: "{{ output.stdout[0] }}"
+        dest: "{{ playbook_dir }}/../ios_configurations/IPv6_output_{{ inventory_hostname }}.txt"

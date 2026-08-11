@@ -1,0 +1,18 @@
+---
+# backup_router.yml — Respaldo automático de running-config del CSR1000v
+- name: RESPALDO AUTOMATICO DE CONFIGURACION
+  hosts: CSR1kv
+  gather_facts: false
+  connection: local
+
+  tasks:
+    - name: OBTENER RUNNING-CONFIG
+      ios_command:
+        commands:
+          - show running-config
+      register: config
+
+    - name: GUARDAR BACKUP EN ../backups/
+      copy:
+        content: "{{ config.stdout[0] }}"
+        dest: "{{ playbook_dir }}/../backups/show_run_{{ inventory_hostname }}.txt"
