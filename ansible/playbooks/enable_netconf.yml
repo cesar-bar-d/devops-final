@@ -1,0 +1,22 @@
+---
+# enable_netconf.yml — Habilita NETCONF-YANG en el CSR1000v (puerto 830)
+- name: HABILITAR NETCONF EN CSR1000v
+  hosts: CSR1kv
+  gather_facts: false
+  connection: local
+
+  tasks:
+    - name: ACTIVAR NETCONF-YANG
+      ios_config:
+        lines:
+          - netconf-yang
+
+    - name: VERIFICAR QUE NETCONF ESTA HABILITADO
+      ios_command:
+        commands:
+          - show netconf-yang status
+      register: netconf_status
+
+    - name: MOSTRAR ESTADO NETCONF
+      debug:
+        var: netconf_status.stdout_lines

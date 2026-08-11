@@ -28,6 +28,16 @@ def get_dnac_config() -> dict:
     }
 
 
+def get_csr_config() -> dict:
+    """Retorna la configuración del CSR1000v para NETCONF desde variables de entorno."""
+    return {
+        "host": os.getenv("CSR_HOST", "192.168.56.101"),
+        "port": int(os.getenv("CSR_PORT", "22")),
+        "user": os.getenv("CSR_USER", "cisco"),
+        "password": os.getenv("CSR_PASS", ""),
+    }
+
+
 def get_webex_config() -> dict:
     """Retorna la configuración de Webex desde variables de entorno."""
     return {
